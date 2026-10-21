@@ -1,0 +1,48 @@
+====================================================================
+FSK GROUND-PENETRATING RADAR SOFTWARE SIMULATION
+FINAL PROJECT REPORT
+====================================================================
+Report date: 2026-10-15
+
+1. PROJECT OBJECTIVE
+Develop and test an educational FSK signal-processing simulation with a software-generated delayed echo, delay estimation, and synthetic GPR-style visualizations.
+
+2. SYSTEM CONFIGURATION
+Sample rate: 500,000 samples/s
+Frequency deviation: +/-25,000 Hz
+Programmed echo delay: 250 samples
+Programmed delay time: 0.500 ms
+Programmed echo gain: 0.4
+
+3. VALIDATION RESULTS
+FSK reference analysis: phase increments corresponded to the programmed +/-25 kHz frequency deviations.
+Echo model: the captured received data matched the model y[n] = x[n] + 0.4*x[n-250] within the numerical precision reported by the analysis script.
+Delay estimator: the strongest searched correlation peak was at 250 samples, equivalent to 0.500 ms.
+Synthetic noise tests: the estimator returned 250 samples at all four tested noise levels (0, 0.01, 0.05, 0.10).
+
+4. VISUALIZATION RESULTS
+A-scan: displayed simulated signal magnitude versus time over a short window.
+B-scan: generated a synthetic two-target image across a 4 m scan with a 60 ns time window.
+
+5. IMPORTANT LIMITATIONS
+This is a software simulation, not a physical GPR system. No antenna, real soil, hardware receiver, or measured buried targets were used.
+The B-scan targets were created by a separate synthetic model and are not detections from the GNU Radio received capture.
+The assumed velocity-based depth conversion is illustrative. The programmed 0.5 ms delay must not be interpreted as a realistic shallow subsurface travel time.
+Noise testing covered a limited set of synthetic conditions and does not establish general real-world noise immunity.
+
+6. OUTPUT FILE CHECK
+--------------------------------------------------------------------
+[OK] reference_stage53.dat (800,000 bytes)
+[OK] received_stage53.dat (800,000 bytes)
+[OK] stage54_echo_delay_correlation.png (299,761 bytes)
+[OK] stage55_echo_model_comparison.png (142,810 bytes)
+[OK] stage56_improved_delay.png (334,477 bytes)
+[OK] stage58_ascan_time.png (140,483 bytes)
+[OK] stage58_ascan_depth.png (139,103 bytes)
+[OK] stage59_synthetic_bscan.png (200,901 bytes)
+
+Overall file check: PASS
+
+7. CONCLUSION
+The educational GNU Radio and Python workflow demonstrates FSK signal generation, a controlled digital echo model, delay estimation, synthetic noise testing, and GPR-style A-scan/B-scan visualization. Physical GPR performance remains unvalidated.
+====================================================================

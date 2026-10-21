@@ -1,0 +1,193 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: fsk_gpr
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Not titled yet
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: decimation
+  id: variable
+  parameters:
+    comment: ''
+    value: '128'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [448, 4.0]
+    rotation: 0
+    state: enabled
+- name: delta_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: '1250000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [352, 4.0]
+    rotation: 0
+    state: enabled
+- name: fc
+  id: variable
+  parameters:
+    comment: ''
+    value: '2400000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [264, 4.0]
+    rotation: 0
+    state: enabled
+- name: num_delay
+  id: variable
+  parameters:
+    comment: ''
+    value: '79'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 4.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '5000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [160, 4.0]
+    rotation: 0
+    state: enabled
+- name: sim_samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '500000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [664, 4.0]
+    rotation: 0
+    state: enabled
+- name: radar_estimator_fsk_0
+  id: radar_estimator_fsk
+  parameters:
+    affinity: ''
+    alias: ''
+    center_freq: fc
+    comment: ''
+    delta_freq: delta_freq
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    push_power: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [768, 196.0]
+    rotation: 0
+    state: enabled
+- name: radar_signal_generator_fsk_c_0
+  id: radar_signal_generator_fsk_c
+  parameters:
+    affinity: ''
+    alias: ''
+    amplitude: '0.5'
+    blocks_per_tag: '131072'
+    comment: ''
+    freq_high: '625000'
+    freq_low: '-625000'
+    len_key: '"packet_len"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_per_freq: '1'
+    samp_rate: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 156.0]
+    rotation: 0
+    state: enabled
+- name: radar_usrp_echotimer_cc_0
+  id: radar_usrp_echotimer_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    antenna_rx: ''
+    antenna_tx: ''
+    args_rx: '''addr=192.168.xx.xx'''
+    args_tx: '''addr=192.168.xx.xx'''
+    center_freq: fc
+    channel_rx: '0'
+    channel_tx: '0'
+    clock_source_rx: '''mimo'''
+    clock_source_tx: '''internal'''
+    comment: ''
+    gain_rx: ''
+    gain_tx: ''
+    len_key: '"packet_len"'
+    lo_offset_rx: '0'
+    lo_offset_tx: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_delay_samps: num_delay
+    samp_rate: samp_rate
+    time_source_rx: '''mimo'''
+    time_source_tx: '''none'''
+    timeout_rx: '0.1'
+    timeout_tx: '0.1'
+    wait_rx: '0.05'
+    wait_tx: '0.05'
+    wire_rx: ''''''
+    wire_tx: ''''''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 188.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [radar_signal_generator_fsk_c_0, '0', radar_usrp_echotimer_cc_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.12.0

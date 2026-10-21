@@ -1,0 +1,12 @@
+STAGE 33 — MANUAL GNU RADIO COMPANION CHECKLIST
+
+1. Stop the flowgraph before changing any blocks.
+2. Confirm the reference File Sink is connected to the transmitter/modulator output.
+3. Confirm the received File Sink is connected after the Add block.
+4. Confirm the delayed branch contains exactly one Delay block set to 250 samples.
+5. Confirm the delayed branch has one Multiply Const block set to 0.4.
+6. Confirm Add inputs are direct signal and delayed/scaled signal, with no unintended feedback loop.
+7. For the next capture, use a finite capture or stop the flowgraph promptly to avoid huge files.
+8. Use a non-repeating/random symbol sequence for the diagnostic capture if the source supports it.
+9. Restart both files from a fresh capture so their first samples are aligned.
+10. Do not infer physical target depth from the 500 kS/s sample rate.
