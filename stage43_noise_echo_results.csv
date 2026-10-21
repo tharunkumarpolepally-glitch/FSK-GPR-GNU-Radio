@@ -1,0 +1,5 @@
+noise_std,expected_delay,estimated_delay,delay_error_samples,correlation_peak
+0.001,250,250,0,7999.93994140625
+0.01,250,250,0,8000.3017578125
+0.05,250,250,0,7991.93310546875
+0.1,250,250,0,7998.900390625
